@@ -40,5 +40,3 @@ and so on...
 - Compute uncertainty to reduce building fraction and testing (Previously done and scrapped due to inaccuracy / complexity)
 
 - Figure out a way to better pick the best/simplest number
-
-- Display roots properly
