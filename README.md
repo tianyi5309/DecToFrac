@@ -15,4 +15,14 @@ The precision (literal and percentage) is tracked throughout the computation and
 
 ### Changelog
 10 Aug - Initial commit
+
 11 Aug - Fixed bugs with dividing by zero and pushed integer into array regardless of size
+
+### TODO
+- Use Euclidean algorithm to avoid float inaccuracies
+
+- Also check for square roots / cube roots etc
+
+- Support negative numbers
+
+- Support input of decimals < 1 like ".1234"
