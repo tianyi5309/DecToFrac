@@ -16,8 +16,11 @@ Then, the script rebuilds the original fraction.
 The script checks for various powers using dovetailing:
 
 T1 - EA on power 1
+
 T2 - EA on power 1, 2
+
 T3 - EA on power 1, 2, 3
+
 and so on...
 
 ### Changelog
