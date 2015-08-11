@@ -25,7 +25,7 @@ class Decimal
     Rational(num, den)
   end
   
-  def to_frac (num_terms) # Can return more than num_terms if multiple steps terminate
+  def to_frac (num_terms, pretty = true) # Can return more than num_terms if multiple steps terminate
     returned = 0
     ans = []
     stage = 0

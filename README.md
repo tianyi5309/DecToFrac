@@ -1,17 +1,24 @@
 # DecToFrac
-A little script that converts decimals to the simplest fraction
+A little script that converts decimals to the simplest fraction / root of a fraction.
 
 ### Features
-The script takes a string input of a decimal, then converts it into the simplest fraction (Rational) that rounds off to the decimal.
+The script takes a string input of a decimal, then converts it into the simplest fraction (Rational) or root of a fraction that rounds off to the decimal.
+
+A minimum amount of answers are returned (num_terms).
 
 Note that the fraction must be round off and not truncated.
 
 ### Details
-The script repeatedly flips the decimal part of the input, until the decimal part is close enough to 0.
+The script uses Euclidean Algorithm(EA) to decompose the numerator and denominator, until a fraction rounds off to the input.
 
 Then, the script rebuilds the original fraction.
 
-The precision (literal and percentage) is tracked throughout the computation and "close to 0" is defined as twice the precision (to take into account of inaccuracies). Also tests if the fraction actually rounds off to input.
+The script checks for various powers using dovetailing:
+
+T1 - EA on power 1
+T2 - EA on power 1, 2
+T3 - EA on power 1, 2, 3
+and so on...
 
 ### Changelog
 10 Aug - Initial commit
@@ -20,11 +27,15 @@ The precision (literal and percentage) is tracked throughout the computation and
 
 11 Aug - Changed code to use Euclidean Algorithm (To avoid floating inaccuracies)
 
-### TODO
-- Also check for square roots / cube roots etc
+11 Aug - Checks for roots and implements dovetailing
 
+### TODO
 - Support negative numbers
 
 - Support input of decimals < 1 like ".1234"
 
 - Compute uncertainty to reduce building fraction and testing (Previously done and scrapped due to inaccuracy / complexity)
+
+- Figure out a way to better pick the best/simplest number
+
+- Display roots properly
