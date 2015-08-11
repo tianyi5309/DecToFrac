@@ -24,7 +24,7 @@ T3 - EA on power 1, 2, 3
 and so on...
 
 ### Examples
-`
+```
 2.714   # => 19/7 or 3√20/1
 
 1.769   # => 23/13
@@ -32,7 +32,7 @@ and so on...
 7.68    # => 2√59/1
 
 1.5420  # => 3√11/3
-`
+```
 ### Changelog
 10 Aug - Initial commit
 
