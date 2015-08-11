@@ -12,3 +12,7 @@ The script repeatedly flips the decimal part of the input, until the decimal par
 Then, the script rebuilds the original fraction.
 
 The precision (literal and percentage) is tracked throughout the computation and "close to 0" is defined as twice the precision (to take into account of inaccuracies). Also tests if the fraction actually rounds off to input.
+
+### Changelog
+10 Aug - Initial commit
+11 Aug - Fixed bugs with dividing by zero and pushed integer into array regardless of size
