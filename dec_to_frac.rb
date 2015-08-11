@@ -25,6 +25,14 @@ class Decimal
     Rational(num, den)
   end
   
+  def pretty (frac)
+    if frac[0] == 1
+      frac[1].to_s
+    else
+      frac[0].to_s + "√" + frac[1].to_s
+    end
+  end
+  
   def to_frac (num_terms, pretty = true) # Can return more than num_terms if multiple steps terminate
     returned = 0
     ans = []
@@ -47,7 +55,11 @@ class Decimal
         
         built = [n+1, build(whole[n])]
         if test(built)
-          ans << built
+          if pretty
+            ans << pretty(built)
+          else
+            ans << built
+          end
           returned += 1
           todo.delete(n)
           next
