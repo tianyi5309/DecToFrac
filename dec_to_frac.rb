@@ -73,6 +73,7 @@ class Decimal
   end
 end
 
+puts Decimal.new(ARGV[0]).to_frac(ARGV[1].to_i)
 #def test_decimal
 #  p Decimal.new("1.857").to_frac(1) # 13/7
 #  p Decimal.new("0.538").to_frac(1) # 7/13
