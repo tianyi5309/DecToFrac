@@ -18,11 +18,13 @@ The precision (literal and percentage) is tracked throughout the computation and
 
 11 Aug - Fixed bugs with dividing by zero and pushed integer into array regardless of size
 
-### TODO
-- Use Euclidean algorithm to avoid float inaccuracies
+11 Aug - Changed code to use Euclidean Algorithm (To avoid floating inaccuracies)
 
+### TODO
 - Also check for square roots / cube roots etc
 
 - Support negative numbers
 
 - Support input of decimals < 1 like ".1234"
+
+- Compute uncertainty to reduce building fraction and testing (Previously done and scrapped due to inaccuracy / complexity)
