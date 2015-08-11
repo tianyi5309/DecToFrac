@@ -17,7 +17,7 @@ class Decimal
       num, den = den, num
       num += den * n
     end
-    [den, num]
+    [num, den]
   end
   
   def to_frac
@@ -27,16 +27,14 @@ class Decimal
     cont = true
     uncertain = 0.1**@precision / 2
     while true
-      if dec >= 1
-        whole << dec.to_i
-        dec = dec % 1
-      end
-      
-      uncertain_perc = uncertain / dec
+      whole << dec.to_i
+      dec = dec % 1
       
       if dec.abs < 2*uncertain && test(build(whole))
         break
       end
+      
+      uncertain_perc = uncertain / dec
       
       dec = 1/dec
       
