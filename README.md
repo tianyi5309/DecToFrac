@@ -24,6 +24,7 @@ T3 - EA on power 1, 2, 3
 and so on...
 
 ### Examples
+Minimum number of answers returned (min_term) is 1.
 ```
 2.714   # => 19/7 or 3√20/1
 
