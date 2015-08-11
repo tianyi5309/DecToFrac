@@ -37,6 +37,10 @@ and so on...
 
 - Support input of decimals < 1 like ".1234"
 
+- Factor integers out of roots
+
 - Compute uncertainty to reduce building fraction and testing (Previously done and scrapped due to inaccuracy / complexity)
 
 - Figure out a way to better pick the best/simplest number
+
+- LATEX support
