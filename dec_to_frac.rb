@@ -1,13 +1,18 @@
 class Decimal
   def initialize (dec)
     @dec_str = dec
-    @dec = @dec_str.to_f
     
-    @precision = @dec_str.split(".")[-1].size
+    if @dec_str.split(".")[1].nil?
+      @precision = 0
+    else
+      @precision = @dec_str.split(".")[-1].size
+    end
+    @dec_num = @dec_str.split(".").join.to_i
+    @dec_den = 10**@precision
   end
   
   def test (frac)
-    dec = frac[0].to_f / frac[1]
+    dec = frac.numerator.to_f / frac.denominator
     @dec_str == "%0.#{@precision}f" % dec.round(@precision)
   end
   
@@ -17,34 +22,38 @@ class Decimal
       num, den = den, num
       num += den * n
     end
-    [num, den]
+    Rational(num, den)
   end
   
   def to_frac
     whole = []
-    dec = @dec
+    num = @dec_num
+    den = @dec_den
     
-    cont = true
-    uncertain = 0.1**@precision / 2
     while true
-      whole << dec.to_i
-      dec = dec % 1
+      whole << num/den  # Division by integers should return integer
+      num = num % den
       
-      if dec.abs < 2*uncertain && test(build(whole))
+      if test(build(whole))
         break
       end
       
-      uncertain_perc = uncertain / dec
-      
-      dec = 1/dec
-      
-      uncertain = uncertain_perc * dec
+      num, den = den, num
     end
     
     built = build(whole)
-    Rational(built[0], built[1])
   end
 end
 
-test = Decimal.new(ARGV[0])
-puts test.to_frac
+def test_decimal
+  puts Decimal.new("1.857").to_frac == Rational(13, 7)
+  puts Decimal.new("0.5384615385").to_frac == Rational(7, 13)
+  puts Decimal.new("1.6180340557").to_frac == Rational(4181, 2584)
+  puts Decimal.new("0.61803396").to_frac == Rational(2584, 4181)
+  puts Decimal.new("10").to_frac == Rational(10, 1)
+  puts Decimal.new("0").to_frac == Rational(0, 1)
+  puts Decimal.new("0.00").to_frac == Rational(0, 1)
+  puts Decimal.new("10.000").to_frac == Rational(10, 1)
+end
+
+test_decimal
