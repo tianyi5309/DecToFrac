@@ -12,7 +12,7 @@ class Decimal
   end
   
   def test (frac)
-    dec = frac.numerator.to_f / frac.denominator
+    dec = (frac[1].numerator.to_f / frac[1].denominator) ** (1.0/frac[0])
     @dec_str == "%0.#{@precision}f" % dec.round(@precision)
   end
   
@@ -25,35 +25,57 @@ class Decimal
     Rational(num, den)
   end
   
-  def to_frac
+  def to_frac (num_terms) # Can return more than num_terms if multiple steps terminate
+    returned = 0
+    ans = []
+    stage = 0
+    todo = []
     whole = []
-    num = @dec_num
-    den = @dec_den
-    
-    while true
-      whole << num/den  # Division by integers should return integer
-      num = num % den
+    num = []
+    den = []
+    while returned < num_terms  # Dovetails through different powers
+      # Init new number
+      todo << stage
+      whole << []
+      num << @dec_num ** (stage+1)
+      den << @dec_den ** (stage+1)
       
-      if test(build(whole))
-        break
+      # Loop through each number and apply operation
+      todo.each do |n|
+        whole[n] << num[n] / den[n]
+        num[n] = num[n] % den[n]
+        
+        built = [n+1, build(whole[n])]
+        if test(built)
+          ans << built
+          returned += 1
+          todo.delete(n)
+          next
+        end
+        
+        num[n], den[n] = den[n], num[n]
       end
-      
-      num, den = den, num
+      stage += 1
     end
-    
-    built = build(whole)
+    ans
   end
 end
 
 def test_decimal
-  puts Decimal.new("1.857").to_frac == Rational(13, 7)
-  puts Decimal.new("0.5384615385").to_frac == Rational(7, 13)
-  puts Decimal.new("1.6180340557").to_frac == Rational(4181, 2584)
-  puts Decimal.new("0.61803396").to_frac == Rational(2584, 4181)
-  puts Decimal.new("10").to_frac == Rational(10, 1)
-  puts Decimal.new("0").to_frac == Rational(0, 1)
-  puts Decimal.new("0.00").to_frac == Rational(0, 1)
-  puts Decimal.new("10.000").to_frac == Rational(10, 1)
+  p Decimal.new("1.857").to_frac(1) # 13/7
+  p Decimal.new("0.538").to_frac(1) # 7/13
+  p Decimal.new("1.6180340557").to_frac(50) # 4181/2584
+  p Decimal.new("0.6180339632").to_frac(1) # 2584/4181
+  p Decimal.new("10").to_frac(1) # 10/1
+  p Decimal.new("0").to_frac(1) # 0/1
+  p Decimal.new("0.00").to_frac(1) # 0/1
+  p Decimal.new("10.000").to_frac(1) # 10/1
+  p Decimal.new("1.414").to_frac(1) # sqrt 2
+  p Decimal.new("1.732").to_frac(1) # sqrt 3
+  p Decimal.new("1.2599").to_frac(1) # cbrt 2
+  p Decimal.new("1.4422").to_frac(1) # cbrt 3
+  p Decimal.new("1.1224620").to_frac(5) # 2**(1/6)
+  p Decimal.new("1.2009").to_frac(5) # 3**(1/6)
 end
 
 test_decimal
