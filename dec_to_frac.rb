@@ -61,21 +61,27 @@ class Decimal
   end
 end
 
-def test_decimal
-  p Decimal.new("1.857").to_frac(1) # 13/7
-  p Decimal.new("0.538").to_frac(1) # 7/13
-  p Decimal.new("1.6180340557").to_frac(50) # 4181/2584
-  p Decimal.new("0.6180339632").to_frac(1) # 2584/4181
-  p Decimal.new("10").to_frac(1) # 10/1
-  p Decimal.new("0").to_frac(1) # 0/1
-  p Decimal.new("0.00").to_frac(1) # 0/1
-  p Decimal.new("10.000").to_frac(1) # 10/1
-  p Decimal.new("1.414").to_frac(1) # sqrt 2
-  p Decimal.new("1.732").to_frac(1) # sqrt 3
-  p Decimal.new("1.2599").to_frac(1) # cbrt 2
-  p Decimal.new("1.4422").to_frac(1) # cbrt 3
-  p Decimal.new("1.1224620").to_frac(5) # 2**(1/6)
-  p Decimal.new("1.2009").to_frac(5) # 3**(1/6)
-end
-
-test_decimal
+#def test_decimal
+#  p Decimal.new("1.857").to_frac(1) # 13/7
+#  p Decimal.new("0.538").to_frac(1) # 7/13
+#  p Decimal.new("1.6180340557").to_frac(1) # 4181/2584
+#  p Decimal.new("0.6180339632").to_frac(1) # 2584/4181
+#  p Decimal.new("10").to_frac(1) # 10/1
+#  p Decimal.new("0").to_frac(1) # 0/1
+#  p Decimal.new("0.00").to_frac(1) # 0/1
+#  p Decimal.new("10.000").to_frac(1) # 10/1
+#  p Decimal.new("1.41").to_frac(1) # sqrt 2
+#  p Decimal.new("1.73").to_frac(1) # sqrt 3
+#  p Decimal.new("1.26").to_frac(1) # cbrt 2
+#  p Decimal.new("1.442").to_frac(1) # cbrt 3
+#  p Decimal.new("1.1224620").to_frac(5) # 2**(1/6)
+#  p Decimal.new("1.2009").to_frac(5) # 3**(1/6)
+#end
+#
+#test_decimal
+#
+#n = 0
+#while n < 10000
+#  puts "0." + n.to_s + "\t" + Decimal.new("0.#{n}").to_frac(1).inspect
+#  n += 1
+#end
